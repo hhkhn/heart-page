@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Message</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    font-family: "Poppins", sans-serif;
+    transition: background 1s ease;
+  }
+
+  h2 {
+    color: #e67a92;
+    font-size: 24px;
+    margin-bottom: 20px;
+    transition: opacity 1s ease;
+  }
+
+  .heart {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    animation: beat 1s infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    background: red;
+    border-radius: 30px 30px 0 0;
+    top: 0;
+  }
+
+  .heart::before {
+    left: 30px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+
+  .heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  /* Ẩn phần thư */
+  .letter {
+    display: none;
+    background: #fff;
+    color: #333;
+    width: 70%;
+    max-width: 700px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    line-height: 1.6;
+    text-align: left;
+    animation: fadeIn 2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .letter h1 {
+    margin-top: 0;
+    font-family: "Georgia", serif;
+    color: #e83b53;
+  }
+
+  .signature {
+    margin-top: 20px;
+    font-style: italic;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+  <h2>Click the heart!</h2>
+  <div class="heart" id="heart"></div>
+
+  <div class="letter" id="letter">
+    <h1>Khách sạn Xinh 💖</h1>
+    <p>
+      Chào mừng bạn đã tìm thấy trái tim này!  
+      Đây là nơi dành riêng cho những khoảnh khắc ấm áp và đáng nhớ nhất.  
+      Hãy để chúng tôi mang đến cho bạn không gian thật xinh đẹp,  
+      nhẹ nhàng như chính cảm xúc của bạn bây giờ 💗
+    </p>
+    <p class="signature">— With Love, from Khách sạn Xinh</p>
+  </div>
+
+<script>
+  const heart = document.getElementById("heart");
+  const title = document.querySelector("h2");
+  const letter = document.getElementById("letter");
+
+  heart.addEventListener("click", () => {
+    // Ẩn trái tim và chữ
+    heart.style.display = "none";
+    title.style.display = "none";
+    // Đổi nền
+    document.body.style.background = "pink";
+    // Hiện thư
+    letter.style.display = "block";
+  });
+</script>
+</body>
+</html>
